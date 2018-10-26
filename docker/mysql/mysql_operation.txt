@@ -13,6 +13,7 @@ $ docker exec -it mysql bash
 #新しいのcontainerをdocker run
 
 $ docker run --volumes-from mysql_data --name mysql -e MYSQL_ROOT_PASSWORD=mysql -d -p 3306:3306 mysql
+$ docker exec -it mysql bash
 root@3ad9a6ceb178:/# mysql -u root -p
 Enter password: #passwordを入力
 Welcome to the MySQL monitor.  Commands end with ; or \g.
