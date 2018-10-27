@@ -63,3 +63,11 @@ root@3ad9a6ceb178:/# exit
 exit
 
 データはまだあります、永続化することを確認しました
+
+### volumeはどこに保存しました
+# host の中に
+# host は何? Macの中にどうやって監視しますか
+$ cd ~/Library/Containers/com.docker.docker/Data/vms/0/
+$ screen tty -> host のlinuxシステム入れます ここは実際のhost (macではなく)
+
+# macのbashにdocker volume lsで見た情報は hostの/var/lib/volumeと同じです
