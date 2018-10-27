@@ -71,3 +71,4 @@ $ cd ~/Library/Containers/com.docker.docker/Data/vms/0/
 $ screen tty -> host のlinuxシステム入れます ここは実際のhost (macではなく)
 
 # macのbashにdocker volume lsで見た情報は hostの/var/lib/volumeと同じです
+# Docker host の disk image は　Docker.qcow2です 
