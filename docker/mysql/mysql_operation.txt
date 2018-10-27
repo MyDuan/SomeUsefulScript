@@ -71,4 +71,17 @@ $ cd ~/Library/Containers/com.docker.docker/Data/vms/0/
 $ screen tty -> host のlinuxシステム入れます ここは実際のhost (macではなく)
 
 # macのbashにdocker volume lsで見た情報は hostの/var/lib/volumeと同じです
-# Docker host の disk image は　Docker.qcow2です 
+# Docker host の disk image は　Docker.qcow2です
+
+note:
+
+一番重要なことは：
+
+mysql は /var/lib/mysqlのvolume を持っています, Host にはrandomの名前でvolumeを作りました(例えば：aae7a9eb8a2cf362b1b87ad1effbfa08a15fef889aa4b534cbb87d0a43d77ba8)
+このcontainerを削除した後は先作成したのvolume(aae7a9eb8a2cf362b1b87ad1effbfa08a15fef889aa4b534cbb87d0a43d77ba8)はまだ存在していますが、新しいcontainerを作る時に新しいのvolumeをhostに作成しました。その原因で、先のaae7a9eb8a2cf362b1b87ad1effbfa08a15fef889aa4b534cbb87d0a43d77ba8 のvolumeは無視しました、保存したデータを利用しなっかた。
+解決方針は二つ：
+この番号を確認して、覚えて(docker inspect CONTAINER_ID )、次新しいcontainerを作成する時に下のcommandで実行する。
+docker run -v /var/lib/docker/volumes/aae7a9eb8a2cf362b1b87ad1effbfa08a15fef889aa4b534cbb87d0a43d77ba8/_data:/var/lib/mysql:rw --name mysql -e MYSQL_ROOT_PASSWORD=mysql -d -p 3306:3306 mysql 前のデータは導入できます。
+
+このvolumeの番号を探す、記録はよくないので、はじめの時に、自分でこのhostのvolumeの名前を作成すれば(例えば：dbdata)、
+docker run -v dbdata:/var/lib/mysql:rw --name mysql -e MYSQL_ROOT_PASSWORD=mysql -d -p 3306:3306 mysql いいです。その後、毎回このcommandでデータを導入できます。Dockerfileの中に指定するも問題ないです。
