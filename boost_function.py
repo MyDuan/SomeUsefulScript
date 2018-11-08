@@ -1,15 +1,27 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-def boost_function(x, k, coef_04, coef_05, coef_06, coef_07):
-    exp = np.exp(coef_05 * (x / 100 - k - coef_07))
-    boost = (coef_06 + coef_04 * exp) / (1 + exp)
-    upper_bound = 2 * (coef_06 > coef_04 ? coef_06 : coef_04)
-    if(0 < $boost && $boost <= $upper_bound):
-        return boost
-    else
-        print("Invalid result: x=%s, boost=%s", x, boost)
+def boost_function(x, k, c1, c2, c3, c4):
+    exp = np.exp(c2 * (x / 100.0 - k - c4))
+    y = 1.0*(c3 + c1 * exp) / (1 + exp)
+    print("y:",y)
+    if c3 > c1:
+        t = c3
+    else:
+        t = c1
+    upper_bound = 2 * t
+    if(0 < y and y <= upper_bound):
+        return y
+    else:
+        return -1
+        print("Invalid result: x=%s, y=%s", x, y)
 
-def main():
-
-    boost_function()
+if __name__ == "__main__":
+    x = np.arange(73000) * 0.1
+    y = np.zeros(73000)
+    for i in range(73000):
+        y[i] = boost_function(x[i], -200.0, 3.8, 50.0, 2.15, 260.0)
+    fig = plt.figure()
+    plt.legend(loc='upper left')
+    plt.plot(x, y)
+    plt.show()
