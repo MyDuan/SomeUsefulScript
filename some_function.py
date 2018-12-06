@@ -48,11 +48,11 @@ if __name__ == "__main__":
         #y2[i] = function_1(x[i], -121.79645156272358, 3.0, 10.0, 3.2, 124)
         #y3[i] = function_1(x[i], -121.79645156272358, 3.0, 10.0, 3.2, 125)
         #y4[i] = function_1(x[i], -121.79645156272358, 3.0, 10.0, 3.2, 126)
-        #pc rt cpa y[i] = function_1(x[i], -121.79645156272358, 3.3, 50.0, 2.8, 180.0)
-        #sp not rt pr cpa y[i] = function_1(x[i], -200, 5.2, 15.0, 4.6, 8.5)
-        #sp rt pr cpa y[i] = function_1(x[i], -200, 3.8, 50.0, 2.15, 260)
+        #pc yes y[i] = function_1(x[i], -121.79645156272358, 3.3, 50.0, 2.8, 180.0)
+        #sp not y[i] = function_1(x[i], -200, 5.2, 15.0, 4.6, 8.5)
+        #sp yes y[i] = function_1(x[i], -200, 3.8, 50.0, 2.15, 260)
 
-    #margin function
+    #function 2
     x = np.arange(0, 1000) * 1.0
     y = np.zeros(1000)
     for i in range(1000):
