@@ -44,10 +44,25 @@ def greedy(runs=2000, time=1000):
     plt.savefig('../images/figure_2_2.png')
     plt.close()
 
+def optimistic_initial_values(runs=2000, time=1000):
+    bandits = []
+    bandits.append(Bandit(epsilon=0, initial=5, step_size=0.1))
+    bandits.append(Bandit(epsilon=0.1, initial=0, step_size=0.1))
+    best_action_counts, _ = simulate(runs, time, bandits)
+
+    plt.plot(best_action_counts[0], label='epsilon = 0, q = 5')
+    plt.plot(best_action_counts[1], label='epsilon = 0.1, q = 0')
+    plt.xlabel('Steps')
+    plt.ylabel('% optimal action')
+    plt.legend()
+
+    plt.savefig('../images/figure_2_3.png')
+    plt.close()
+
 def main():
     # e-greedy
     greedy()
-
+    optimistic_initial_values()
 
 if __name__ == '__main__':
     main()
