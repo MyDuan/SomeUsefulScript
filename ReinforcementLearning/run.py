@@ -59,10 +59,26 @@ def optimistic_initial_values(runs=2000, time=1000):
     plt.savefig('../images/figure_2_3.png')
     plt.close()
 
+def UBC(runs=2000, time=1000):
+    bandits = []
+    bandits.append(Bandit(epsilon=0, UCB_param=2, sample_averages=True))
+    bandits.append(Bandit(epsilon=0.1, sample_averages=True))
+    _, average_rewards = simulate(runs, time, bandits)
+
+    plt.plot(average_rewards[0], label='UCB c = 2')
+    plt.plot(average_rewards[1], label='epsilon greedy epsilon = 0.1')
+    plt.xlabel('Steps')
+    plt.ylabel('Average reward')
+    plt.legend()
+
+    plt.savefig('../images/figure_2_4.png')
+    plt.close()
+
 def main():
     # e-greedy
-    greedy()
-    optimistic_initial_values()
+    #greedy()
+    #optimistic_initial_values()
+    UBC()
 
 if __name__ == '__main__':
     main()
