@@ -74,11 +74,32 @@ def UCB(runs=2000, time=1000):
     plt.savefig('../images/figure_2_4.png')
     plt.close()
 
+def gradient_bandit(runs=2000, time=1000):
+    bandits = []
+    bandits.append(Bandit(gradient=True, step_size=0.1, gradient_baseline=True, true_reward=4))
+    bandits.append(Bandit(gradient=True, step_size=0.1, gradient_baseline=False, true_reward=4))
+    bandits.append(Bandit(gradient=True, step_size=0.4, gradient_baseline=True, true_reward=4))
+    bandits.append(Bandit(gradient=True, step_size=0.4, gradient_baseline=False, true_reward=4))
+    best_action_counts, _ = simulate(runs, time, bandits)
+    labels = ['alpha = 0.1, with baseline',
+              'alpha = 0.1, without baseline',
+              'alpha = 0.4, with baseline',
+              'alpha = 0.4, without baseline']
+
+    for i in range(0, len(bandits)):
+        plt.plot(best_action_counts[i], label=labels[i])
+    plt.xlabel('Steps')
+    plt.ylabel('% Optimal action')
+    plt.legend()
+
+    plt.savefig('../images/figure_2_5.png')
+    plt.close()
+
 def main():
-    # e-greedy
     #greedy()
     #optimistic_initial_values()
-    UCB()
+    #UCB()
+    gradient_bandit()
 
 if __name__ == '__main__':
     main()
