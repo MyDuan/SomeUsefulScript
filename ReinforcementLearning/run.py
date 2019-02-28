@@ -59,7 +59,7 @@ def optimistic_initial_values(runs=2000, time=1000):
     plt.savefig('../images/figure_2_3.png')
     plt.close()
 
-def UBC(runs=2000, time=1000):
+def UCB(runs=2000, time=1000):
     bandits = []
     bandits.append(Bandit(epsilon=0, UCB_param=2, sample_averages=True))
     bandits.append(Bandit(epsilon=0.1, sample_averages=True))
@@ -78,7 +78,7 @@ def main():
     # e-greedy
     #greedy()
     #optimistic_initial_values()
-    UBC()
+    UCB()
 
 if __name__ == '__main__':
     main()
